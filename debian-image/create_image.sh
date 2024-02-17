@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 # https://mvallim.github.io/kubernetes-under-the-hood/documentation/create-linux-image.html
 
 SCRIPT=$(dirname "$0")
@@ -61,7 +63,7 @@ if ! [ -d "$BUILD/chroot/bin" ]; then
     --variant=minbase \
     --components "main" \
     --include "ca-certificates,cron,iptables,isc-dhcp-client,libnss-myhostname,ntp,ntpdate,rsyslog,ssh,sudo,dialog,whiptail,man-db,curl,dosfstools,e2fsck-static" \
-    bookworm \
+    bullseye \
     "$BUILD/chroot" \
     http://deb.debian.org/debian/
 else
