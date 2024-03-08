@@ -1,1 +1,3 @@
 /debian-image/build
+/tmp
+/vm-state
