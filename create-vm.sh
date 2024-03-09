@@ -2,8 +2,6 @@
 
 set -eu
 
-DIR="$(dirname "$(realpath "$0")")"
-
 NAME="$1"
 
 mkdir -p tmp
@@ -33,11 +31,20 @@ virt-install -n "$NAME" \
     --import --disk "path=$DISK,bus=virtio" \
     --network network=default,model=virtio \
     --graphics=none --rng /dev/urandom \
-    "--cloud-init=user-data=$DIR/user-data,meta-data=$meta_data" \
+    "--cloud-init=user-data=user-data,meta-data=$meta_data" \
     --noautoconsole
 
 rm "$meta_data"
 
 echo "Successfully created $NAME"
 
-virsh domifaddr "$NAME"
+until virsh domifaddr "$NAME" | grep ipv4 >/dev/null; do
+    echo "waiting for VM to start up and get an IP"
+    sleep 1
+done
+
+ip=$(virsh domifaddr "$NAME" | grep ipv4 | awk '{print $4}' | cut -d/ -f1)
+
+echo "IP: $ip"
+
+echo "$ip" >> vm-state/inventory.ini

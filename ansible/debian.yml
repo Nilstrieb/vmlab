@@ -1,0 +1,6 @@
+---
+- name: Install Debian
+  hosts: all
+  become: true
+  roles:
+   - update

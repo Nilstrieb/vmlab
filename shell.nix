@@ -1,3 +1,3 @@
 { pkgs ? import <nixpkgs> { } }: pkgs.mkShell {
-  packages = with pkgs; [ debootstrap ];
+  packages = with pkgs; [ debootstrap ansible ansible-lint ];
 }
