@@ -2,6 +2,6 @@
 
 mkdir -p vm-state
 
-cat >vm-state/inventory-ini <<EOF
+cat >vm-state/inventory.ini <<EOF
 [myhosts]
 EOF

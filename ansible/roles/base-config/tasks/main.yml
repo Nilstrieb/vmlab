@@ -1,0 +1,9 @@
+- name: Change hostname
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+- name: Install core packages
+  ansible.builtin.apt:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - gpg

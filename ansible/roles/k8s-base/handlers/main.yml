@@ -1,0 +1,4 @@
+- name: "Containerd config changed"
+  ansible.builtin.service:
+    name: containerd
+    state: reloaded
