@@ -1,3 +1,5 @@
 /debian-image/build
 /tmp
 /vm-state
+.terraform
+terraform.tfstate*

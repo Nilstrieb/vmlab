@@ -1,3 +1,9 @@
 { pkgs ? import <nixpkgs> { } }: pkgs.mkShell {
-  packages = with pkgs; [ debootstrap ansible ansible-lint gparted ];
+  packages = with pkgs; [
+    ansible
+    ansible-lint
+    gparted
+    opentofu
+    cdrkit
+  ];
 }
